@@ -38,10 +38,14 @@ public class TicTacToe() {
         TicTacToePlayer player = players[index];
         while (true) {
             if (canPlay) {
-                player.play();
+                mark(player.play(), playa);
                 index = other(index);
             }
         }
+    }
+    
+    private void mark(int[] rc, TicTacToePlayer pl) {
+        board[rc[0]][rc[1]] = pl.getPiece();
     }
     
     private int other(int x) {
@@ -51,17 +55,13 @@ public class TicTacToe() {
         return 0;
     }
     
-    /** Determines if there is a winner. */
-    public boolean winner()
-    {
-        
-    }
-    
+
     
     /** Returns true if the board isn't full meaning the player can play. */
     public boolean canPlay() {
-        return !isBoardFull();
+        return !isBoardFull();  //need to make so no winner
     }
+    
     
     // Loop through all cells of the board and if one is found to be empty (contains char '-') then return false.
     // Otherwise the board is full.
@@ -87,6 +87,50 @@ public class TicTacToe() {
        }
     }
 
+    /** Determines if there is a winner. */
+    public boolean winner()
+    {
+        return checkDiag || checkRow || checkCol;
+    }
+    
+    private boolean checkDiag() {
+        return checkWin(board[0][0], board[1][1], board[2][2]);
+    }
+    
+    private boolean checkRow() {
+        for (int i = 0; i < 3; i++) {
+            if (checkWin(board[i][0], board[i][1], board[i][2])) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean checkCol() {
+        for (int i = 0; i < 3; i++) {
+            if (checkWin(board[0][i], board[1][i], board[2][i])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkWin(char r1, char r2, char r3) {
+        return (r1 != '-') && r1 == r2 && r2 == r3;
+    }
+
+    /** Print out the board. */
+    public void printBoard() {
+        System.out.println("-------------");
+        for (int i = 0; i < 3; i++) {
+            System.out.print("| ");
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j] + " | ");
+            }
+            System.out.println();
+            System.out.println("-------------");
+        }
+    }
     
 
 }
