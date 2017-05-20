@@ -7,7 +7,7 @@ Simple one game of TicTacToe.
 @date March 26, 2017
 */
 
-public class TicTacToe() {
+public class TicTacToe {
     
     public static final char EMPTY = '-';
     public static final char X = 'x';
@@ -24,9 +24,6 @@ public class TicTacToe() {
         player[1] = p2;
     }
 
-    
-    /** Player 0 is X while player 1 is O */
-    private int player = 0;
 
     /** Creating the board. */
     public static int ROW = 3;
@@ -35,10 +32,10 @@ public class TicTacToe() {
     
     public void playGame() {
         
-        TicTacToePlayer player = players[index];
+        TicTacToePlayer pla = player[index];
         while (true) {
-            if (canPlay) {
-                mark(player.play(), playa);
+            if (canPlay()) {
+                mark(pla.play(), pla);
                 index = other(index);
             }
         }
@@ -90,7 +87,7 @@ public class TicTacToe() {
     /** Determines if there is a winner. */
     public boolean winner()
     {
-        return checkDiag || checkRow || checkCol;
+        return checkDiag() || checkRow() || checkCol();
     }
     
     private boolean checkDiag() {
