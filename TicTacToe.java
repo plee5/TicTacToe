@@ -22,6 +22,7 @@ public class TicTacToe {
         player = new TicTacToePlayer[2];
         player[0] = p1;
         player[1] = p2;
+        setupGame();
     }
 
 
@@ -37,6 +38,9 @@ public class TicTacToe {
             if (canPlay()) {
                 mark(pla.play(), pla);
                 index = other(index);
+            } else {
+                System.out.println(player[other(index)] + " has won!");
+                System.exit(0);
             }
         }
     }

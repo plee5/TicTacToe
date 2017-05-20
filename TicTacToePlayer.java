@@ -4,7 +4,7 @@ import java.util.Scanner;
 Simple one game of TicTacToe.
 
 @author Patrick Lee
-@date March 26, 2017
+@date May 19, 2017
 */
 
 public class TicTacToePlayer {
