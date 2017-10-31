@@ -36,6 +36,7 @@ public class TicTacToe {
         TicTacToePlayer pla = player[index];
         while (true) {
             if (canPlay()) {
+                System.out.println("Player " + index + "'s turn.'");
                 mark(pla.play(), pla);
                 index = other(index);
             } else {
@@ -46,7 +47,18 @@ public class TicTacToe {
     }
     
     private void mark(int[] rc, TicTacToePlayer pl) {
-        board[rc[0]][rc[1]] = pl.getPiece();
+        while (true) {
+            if (board[rc[0]][rc[1]] == '-') {
+                board[rc[0]][rc[1]] = pl.getPiece();
+                return;
+            } else {
+                System.out.println("Cannot go there.");
+                //need to get it to ask again and not just keep looping
+                //maybe have player have access to the board?
+                //have the mark in play instead.
+                //do while
+            }
+        }
     }
     
     private int other(int x) {

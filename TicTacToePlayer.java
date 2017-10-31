@@ -21,12 +21,12 @@ public class TicTacToePlayer {
         int toRet[] = new int[2];
         int row = -1;
         int col = -1;
+        System.out.println("Please select your row:");
         if (scan.hasNext()) {
-            System.out.println("Please select your row:");
             row = Integer.parseInt(scan.next());  //currently assumes you enter int
             toRet[0] = row;
+            System.out.println("Please select your column:");
             if (scan.hasNext()) {
-                System.out.println("Please select your column:");
                 col = Integer.parseInt(scan.next());
                 toRet[1] = col;
             } else {
