@@ -9,6 +9,11 @@ public class TicGUI extends JFrame
   JFrame frame = new JFrame("TicTacToe Game");                    //Global frame and grid button variables 
   JButton[][] buttons = new JButton[3][3];
   JButton start = new JButton("Start");              //Create start/reset buttons for game
+//   start.addActionListener(new ActionListener() {
+//       public void actionPerformed(ActionEvent e) { 
+//         initialize();
+//     } 
+// });
   JButton reset = new JButton("Reset");
   JOptionPane turn;
   int moveCounter = 9;
@@ -71,10 +76,28 @@ public class TicGUI extends JFrame
 
 private void initialize()             //Initialize tic tac toe game board
    {
+       
+       
       JPanel mainPanel = new JPanel(new BorderLayout());         //create main panel container to put layer others on top
       JPanel menu = new JPanel(new BorderLayout());
       JPanel game = new JPanel(new GridLayout(3,3));                     //Create two more panels with layouts for buttons
 
+
+      for(int i = 0; i < 3; i++)                      //Create grid of buttons for tic tac toe game
+        {
+         for(int j = 0; j < 3; j++) 
+           {
+
+            buttons[i][j] = new JButton();                //Instantiating buttons 
+            buttons[i][j].setText("");
+            buttons[i][j].setVisible(true);
+           // game.add(new JButton("Button hi"));
+            game.add(buttons[i][j], BorderLayout.WEST); 
+            buttons[i][j].addActionListener(new myActionListener());        //Adding response event to buttons
+           }
+        }
+        
+        
       frame.add(mainPanel);
       mainPanel.setPreferredSize(new Dimension(325,425));
       menu.setPreferredSize(new Dimension(300,50));                     //Setting dimensions of panels
@@ -89,19 +112,7 @@ private void initialize()             //Initialize tic tac toe game board
       reset.addActionListener(new myActionListener());
       frame.setVisible(true);
 
-   for(int i = 0; i < 3; i++)                      //Create grid of buttons for tic tac toe game
-     {
-      for(int j = 0; j < 3; j++) 
-        {
 
-         buttons[i][j] = new JButton();                //Instantiating buttons 
-         buttons[i][j].setText("");
-         buttons[i][j].setVisible(true);
-
-         game.add(buttons[i][j]); 
-         buttons[i][j].addActionListener(new myActionListener());        //Adding response event to buttons
-        }
-     }
 
   }
 
@@ -184,11 +195,13 @@ private void initialize()             //Initialize tic tac toe game board
         }
        else if(a.getSource() == start)
          {
+             System.out.println("It does go here");
            turn = new JOptionPane("Do you want to go first?\n",JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
            start.setEnabled(false);
          }
        else if(a.getSource() == reset)
          {
+             start.setEnabled(true);
             for(int i = 0; i < 3; i++)
              { 
                for(int j = 0; j < 3; j++)
