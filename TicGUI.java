@@ -115,82 +115,88 @@ private void initialize()             //Initialize tic tac toe game board
 
 
   }
-
+private int counter = 0;
  private class myActionListener implements ActionListener
    {      //Implementing action listener for buttons
+       private String[] text = {"X", "O"};
+       //why does it not work to do 3 line
+       // private String[] txt = new String[2];
+       //switch between two players
      public void actionPerformed(ActionEvent a) 
       {
+          
+       counter = 1 - counter;
        //Display X's or O's on the buttons  
        if(a.getSource() == buttons[0][0])                  //Checking which button is pressed
          {
-           buttons[0][0].setText("X");
+           buttons[0][0].setText(text[counter]);
            buttons[0][0].setEnabled(false);
            moveCounter--;
-           compTurn(moveCounter);
+           // compTurn(moveCounter);
            checkWin(0,0);
          } 
        else if(a.getSource() == buttons[0][1])
          {
-           buttons[0][1].setText("X");
+           buttons[0][1].setText(text[counter]);
            buttons[0][1].setEnabled(false);
            moveCounter--;
-           compTurn(moveCounter);
+           // compTurn(moveCounter);
            checkWin(0,1);
          } 
        else if(a.getSource() == buttons[1][0])
         {
-          buttons[1][0].setText("X");  
+          buttons[1][0].setText(text[counter]);  
           buttons[1][0].setEnabled(false);
           moveCounter--;
-          compTurn(moveCounter);
+          // compTurn(moveCounter);
           checkWin(1,0);
         } 
        else if(a.getSource() == buttons[1][1])
         {
-          buttons[1][1].setText("X");
+          buttons[1][1].setText(text[counter]);
           buttons[1][1].setEnabled(false);
           moveCounter--;
-          compTurn(moveCounter);
+          // compTurn(moveCounter);
           checkWin(1,1);
         }
        else if(a.getSource() == buttons[1][2])
         {
-          buttons[1][2].setText("X");
+          buttons[1][2].setText(text[counter]);
           buttons[1][2].setEnabled(false);
           moveCounter--;
-          compTurn(moveCounter); 
+          // compTurn(moveCounter); 
           checkWin(1,2);
         } 
        else if(a.getSource() == buttons[2][2])
         {
-         buttons[2][2].setText("X");
+         buttons[2][2].setText(text[counter]);
          buttons[2][2].setEnabled(false);
          moveCounter--;
-         compTurn(moveCounter);
+         // compTurn(moveCounter);
          checkWin(2,2);
         } 
        else if(a.getSource() == buttons[0][2])
         {
-         buttons[0][2].setText("X");
+         buttons[0][2].setText(text[counter]);
          buttons[0][2].setEnabled(false);
          moveCounter--;
-         compTurn(moveCounter);
+         // compTurn(moveCounter);
          checkWin(0,2);
         }
        else if(a.getSource() == buttons[2][1])
         {
-         buttons[2][1].setText("X");
+         buttons[2][1].setText(text[counter]);
          buttons[2][1].setEnabled(false);
          moveCounter--;
-         compTurn(moveCounter);
+         // compTurn(moveCounter);
          checkWin(2,1);
         }
        else if(a.getSource() == buttons[2][0])
         {
-         buttons[2][0].setText("X");
+         buttons[2][0].setText(text[counter]);
          buttons[2][0].setEnabled(false);
          moveCounter--;
-         compTurn(moveCounter);
+         // compTurn(moveCounter);
          checkWin(2,0);
         }
        else if(a.getSource() == start)
@@ -212,7 +218,9 @@ private void initialize()             //Initialize tic tac toe game board
                 }
              }
            }
+           
        }
+       
      }
 
  public static void main(String[] args)
