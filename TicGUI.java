@@ -41,7 +41,7 @@ public class TicGUI extends JFrame
     else  if(buttons[0][col].getText()==buttons[1][col].getText()&& buttons[1][col].getText()==buttons[2][col].getText())
        {
           gameWon = true;
-          System.out.println(buttons[row][0].getText()+ " wins!!!");
+          System.out.println(buttons[0][col].getText()+ " wins!!!");
        }
     }
   private void compTurn(int count)
@@ -90,7 +90,7 @@ private void initialize()             //Initialize tic tac toe game board
 
             buttons[i][j] = new JButton();                //Instantiating buttons 
             buttons[i][j].setText("");
-            buttons[i][j].setVisible(true);
+            // buttons[i][j].setVisible(true); //wanna do this after clicking start
            // game.add(new JButton("Button hi"));
             game.add(buttons[i][j], BorderLayout.WEST); 
             buttons[i][j].addActionListener(new myActionListener());        //Adding response event to buttons
@@ -116,6 +116,7 @@ private void initialize()             //Initialize tic tac toe game board
 
   }
 private int counter = 0;
+private boolean started = false;
  private class myActionListener implements ActionListener
    {      //Implementing action listener for buttons
        private String[] text = {"X", "O"};
@@ -127,6 +128,10 @@ private int counter = 0;
           
        counter = 1 - counter;
        //Display X's or O's on the buttons  
+       if (!started && a.getSource() != start) {
+           System.out.println("Please click start");
+           return;
+       }
        if(a.getSource() == buttons[0][0])                  //Checking which button is pressed
          {
            buttons[0][0].setText(text[counter]);
@@ -201,12 +206,25 @@ private int counter = 0;
         }
        else if(a.getSource() == start)
          {
-             System.out.println("It does go here");
+             started = true;
            turn = new JOptionPane("Do you want to go first?\n",JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
            start.setEnabled(false);
+           
+           // for(int i = 0; i < 3; i++)                      //Create grid of buttons for tic tac toe game
+           //   {
+           //    for(int j = 0; j < 3; j++) 
+           //      {
+           // 
+           //       buttons[i][j].setVisible(true); //wanna do this after clicking start
+           //      // game.add(new JButton("Button hi"));
+           //      }
+           //   }
+           
          }
        else if(a.getSource() == reset)
          {
+             started = false;
+             System.out.println("Reset!");
              start.setEnabled(true);
             for(int i = 0; i < 3; i++)
              { 
