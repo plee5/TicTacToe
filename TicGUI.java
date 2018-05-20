@@ -36,12 +36,14 @@ public class TicGUI extends JFrame
       if(buttons[row][0].getText()==buttons[row][1].getText()&& buttons[row][1].getText()==buttons[row][2].getText())
         {
           gameWon = true;
-          System.out.println(buttons[row][0].getText()+ " wins!!!");         
+          System.out.println(buttons[row][0].getText()+ " wins!!!");    
+        
         }
     else  if(buttons[0][col].getText()==buttons[1][col].getText()&& buttons[1][col].getText()==buttons[2][col].getText())
        {
           gameWon = true;
           System.out.println(buttons[0][col].getText()+ " wins!!!");
+          
        }
     }
   private void compTurn(int count)
@@ -126,12 +128,16 @@ private boolean started = false;
      public void actionPerformed(ActionEvent a) 
       {
           
-       counter = 1 - counter;
        //Display X's or O's on the buttons  
        if (!started && a.getSource() != start) {
            System.out.println("Please click start");
            return;
        }
+       if (gameWon == true) {
+           System.out.println("Please restart game.");
+           return;
+       }
+    counter = 1 - counter;
        if(a.getSource() == buttons[0][0])                  //Checking which button is pressed
          {
            buttons[0][0].setText(text[counter]);
@@ -209,6 +215,7 @@ private boolean started = false;
              started = true;
            turn = new JOptionPane("Do you want to go first?\n",JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
            start.setEnabled(false);
+           gameWon = false;
            
            // for(int i = 0; i < 3; i++)                      //Create grid of buttons for tic tac toe game
            //   {
